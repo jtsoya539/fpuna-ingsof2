@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Autor">
+    <meta name="description" content="Descripción">
+    <title>PoliScrum</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/w3.css">
+</head>
+
+<body>
+
+    <div class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin">
+
+        <h1 class="w3-center">Bienvenido a PoliScrum</h1>
+
+        <form id="login">
+            <div class="w3-row w3-section">
+                <label for="usuario">Usuario:</label>
+                <input class="w3-input w3-border" type="text" id="usuario" name="usuario" />
+            </div>
+
+            <div class="w3-row w3-section">
+                <label for="clave">Clave:</label>
+                <input class="w3-input w3-border" type="password" id="clave" name="clave" />
+            </div>
+
+            <div class="w3-row w3-section w3-center">
+                <button class="w3-button w3-blue" type="button" onclick="validarCredenciales()">Iniciar
+                    sesión</button>
+            </div>
+        </form>
+
+    </div>
+
+    <div id="mensaje" class="w3-modal">
+        <div class="w3-modal-content">
+            <div class="w3-container">
+                <span onclick="ocultarMensaje()" class="w3-button w3-display-topright">&times;</span>
+                <h2>Mensaje</h2>
+                <p id="respuesta"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+
+</html>
