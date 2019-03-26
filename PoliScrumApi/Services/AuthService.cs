@@ -9,6 +9,9 @@ namespace PoliScrumApi.Services
         private readonly IOracleDatabase database;
         private const string DATA_SOURCE = "(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=JAVIER-HP)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=XEPDB1)))";
 
+        private const string API_INICIAR_SESION = "RISK.K_SERVICIO.API_INICIAR_SESION('{0}', '{1}')";
+        private const string API_VALIDAR_CREDENCIALES = "RISK.K_SERVICIO.API_VALIDAR_CREDENCIALES('{0}', '{1}')";
+
         public AuthService(IOracleDatabase oracleDatabase)
         {
             database = oracleDatabase;
@@ -17,7 +20,7 @@ namespace PoliScrumApi.Services
 
         public Respuesta apiIniciarSesion(string usuario, string token)
         {
-            string stmt = $"RISK.K_SERVICIO.API_INICIAR_SESION('{usuario}', '{token}')";
+            string stmt = string.Format(API_INICIAR_SESION, new string[] { usuario, token });
 
             string resp = database.ExecuteStoredFunction<System.String>(stmt);
             Respuesta respuesta = JsonConvert.DeserializeObject<Respuesta>(resp);
@@ -27,7 +30,7 @@ namespace PoliScrumApi.Services
 
         public Respuesta apiValidarCredenciales(string usuario, string clave)
         {
-            string stmt = $"RISK.K_SERVICIO.API_VALIDAR_CREDENCIALES('{usuario}', '{clave}')";
+            string stmt = string.Format(API_VALIDAR_CREDENCIALES, new string[] { usuario, clave });
 
             string resp = database.ExecuteStoredFunction<System.String>(stmt);
             Respuesta respuesta = JsonConvert.DeserializeObject<Respuesta>(resp);
