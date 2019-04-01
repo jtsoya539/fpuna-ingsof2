@@ -11,6 +11,7 @@ namespace PoliScrumApi.Services
 
         private const string API_INICIAR_SESION = "RISK.K_SERVICIO.API_INICIAR_SESION('{0}', '{1}')";
         private const string API_VALIDAR_CREDENCIALES = "RISK.K_SERVICIO.API_VALIDAR_CREDENCIALES('{0}', '{1}')";
+        private const string API_FINALIZAR_SESION = "RISK.K_SERVICIO.API_FINALIZAR_SESION({0})";
 
         public AuthService(IOracleDatabase oracleDatabase)
         {
@@ -31,6 +32,17 @@ namespace PoliScrumApi.Services
         public Respuesta apiValidarCredenciales(string usuario, string clave)
         {
             string stmt = string.Format(API_VALIDAR_CREDENCIALES, new string[] { usuario, clave });
+
+            string resp = database.ExecuteStoredFunction<System.String>(stmt);
+            Respuesta respuesta = JsonConvert.DeserializeObject<Respuesta>(resp);
+
+            return respuesta;
+        }
+
+
+        public Respuesta apiFinalizarSesion(int idSesion)
+        {
+            string stmt = string.Format(API_FINALIZAR_SESION, new string[] { idSesion.ToString() });
 
             string resp = database.ExecuteStoredFunction<System.String>(stmt);
             Respuesta respuesta = JsonConvert.DeserializeObject<Respuesta>(resp);

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using PoliScrumApi.Models;
@@ -23,18 +24,12 @@ namespace PoliScrumApi.Controllers
             service = authService;
         }
 
-        // GET api/values
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        // GET poliscrum/api/auth/version
+        [HttpGet("version")]
+        [Authorize]
+        public ActionResult<string> Get()
         {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
-        {
-            return "value";
+            return "0.1";
         }
 
         // POST poliscrum/api/auth/token
@@ -51,28 +46,33 @@ namespace PoliScrumApi.Controllers
 
         // POST poliscrum/api/auth/sesion
         [HttpPost("sesion")]
-        public IActionResult iniciarSesion([FromForm] string usuario, [FromForm] string token)
+        public IActionResult iniciarSesion(string usuario, string token)
         {
             Respuesta respuesta = service.apiIniciarSesion(usuario, token);
-            if (Int32.Parse(respuesta.Codigo) == 0)
-            {
-                return Ok();
-            }
-            return BadRequest();
+            return Ok(respuesta);
+        }
+
+        // DELETE poliscrum/api/auth/sesion
+        [HttpDelete("sesion")]
+        public IActionResult finalizarSesion(int idSesion)
+        {
+            Respuesta respuesta = service.apiFinalizarSesion(idSesion);
+            return Ok(respuesta);
         }
 
         private object generarToken(string usuario)
         {
             var claims = new Claim[]
             {
-                new Claim(ClaimTypes.Name, "javier"),
+                new Claim(ClaimTypes.Name, usuario),
+                new Claim(JwtRegisteredClaimNames.Iat, new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds().ToString()),
                 new Claim(JwtRegisteredClaimNames.Nbf, new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds().ToString()),
-                new Claim(JwtRegisteredClaimNames.Exp, new DateTimeOffset(DateTime.Now.AddDays(1)).ToUnixTimeSeconds().ToString()),
+                new Claim(JwtRegisteredClaimNames.Exp, new DateTimeOffset(DateTime.Now.AddMinutes(10)).ToUnixTimeSeconds().ToString()),
             };
 
             var token = new JwtSecurityToken(
                 new JwtHeader(new SigningCredentials(
-                    new SymmetricSecurityKey(Encoding.UTF8.GetBytes("your secret goes here")),
+                    new SymmetricSecurityKey(Encoding.UTF8.GetBytes("6pCgPdzWUEvSKRKNYJgVh9GjveXTAEDA1fXjfgFQ4x8JuYmvILBVlDSePJ5SIlp")),
                                              SecurityAlgorithms.HmacSha256)),
                 new JwtPayload(claims));
 

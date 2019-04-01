@@ -45,7 +45,7 @@ namespace PoliScrumApi
                     jwtBearerOptions.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("your secret goes here")),
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("6pCgPdzWUEvSKRKNYJgVh9GjveXTAEDA1fXjfgFQ4x8JuYmvILBVlDSePJ5SIlp")),
 
                         ValidateIssuer = false,
                         //ValidIssuer = "The name of the issuer",
@@ -55,7 +55,7 @@ namespace PoliScrumApi
 
                         ValidateLifetime = true, //validate the expiration and not before values in the token
 
-                        ClockSkew = TimeSpan.FromMinutes(5) //5 minute tolerance for the expiration date
+                        ClockSkew = TimeSpan.FromMinutes(1) //1 minute tolerance for the expiration date
                     };
                 }
             );

@@ -7,5 +7,7 @@ namespace PoliScrumApi.Services
         Respuesta apiValidarCredenciales(string usuario, string clave);
 
         Respuesta apiIniciarSesion(string usuario, string token);
+
+        Respuesta apiFinalizarSesion(int idSesion);
     }
 }
