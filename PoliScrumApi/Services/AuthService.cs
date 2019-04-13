@@ -7,16 +7,16 @@ namespace PoliScrumApi.Services
     public class AuthService : IAuthService
     {
         private readonly IOracleDatabase database;
-        private const string DATA_SOURCE = "(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=JAVIER-HP)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=XEPDB1)))";
+        private const string DATA_SOURCE = "(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=XEPDB1)))";
 
-        private const string API_INICIAR_SESION = "RISK.K_SERVICIO.API_INICIAR_SESION('{0}', '{1}')";
-        private const string API_VALIDAR_CREDENCIALES = "RISK.K_SERVICIO.API_VALIDAR_CREDENCIALES('{0}', '{1}')";
-        private const string API_FINALIZAR_SESION = "RISK.K_SERVICIO.API_FINALIZAR_SESION({0})";
+        private const string API_INICIAR_SESION = "POLISCRUM.K_SERVICIO.API_INICIAR_SESION('{0}', '{1}')";
+        private const string API_VALIDAR_CREDENCIALES = "POLISCRUM.K_SERVICIO.API_VALIDAR_CREDENCIALES('{0}', '{1}')";
+        private const string API_FINALIZAR_SESION = "POLISCRUM.K_SERVICIO.API_FINALIZAR_SESION({0})";
 
         public AuthService(IOracleDatabase oracleDatabase)
         {
             database = oracleDatabase;
-            database.Connect("risk", "ruffus", DATA_SOURCE);
+            database.Connect("poliscrum", "inge2", DATA_SOURCE);
         }
 
         public Respuesta apiIniciarSesion(string usuario, string token)
