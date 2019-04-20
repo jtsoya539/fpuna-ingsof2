@@ -1,0 +1,58 @@
+@page
+@model PoliScrum.Pages.UserStories.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>HistoriaUsuario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.HistoriaUsuario.titulo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HistoriaUsuario.titulo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HistoriaUsuario.Descripcion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HistoriaUsuario.Descripcion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HistoriaUsuario.CriterioAceptacion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HistoriaUsuario.CriterioAceptacion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HistoriaUsuario.Orden)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HistoriaUsuario.Orden)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HistoriaUsuario.DuracionEstimada)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HistoriaUsuario.DuracionEstimada)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HistoriaUsuario.Valor)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HistoriaUsuario.Valor)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="HistoriaUsuario.ID" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>
