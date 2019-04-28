@@ -13,5 +13,8 @@ Sistema de Gestión de Proyectos Scrum
 ### Definición de Arquitectura y Framework
 ![Definición de Arquitectura y Framework](docs/arquitectura.png)
 
-### Pantalla de Login
-![Pantalla de Login](docs/login.gif)
+### Pantalla de Login v1
+![Pantalla de Login v1](docs/login.gif)
+
+### ABM de Proyectos
+![ABM de Proyectos](docs/abm_proyectos.gif)
