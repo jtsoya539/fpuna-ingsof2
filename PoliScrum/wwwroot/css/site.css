@@ -23,6 +23,10 @@ body {
     background-color: #3b598d;
 }
 
+.navbar-brand {
+    font-size: larger;
+}
+
 /* Make .svg files in the carousel display properly in older browsers */
 .carousel-inner .item img[src$=".svg"] {
     width: 100%;

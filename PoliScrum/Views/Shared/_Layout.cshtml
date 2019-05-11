@@ -35,10 +35,16 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Inicio</a></li>
+                    <!--<li><a asp-area="" asp-controller="Home" asp-action="Index">Inicio</a></li>-->
                     @if (SignInManager.IsSignedIn(User)) 
                     {
                         <li><a asp-area="" asp-controller="Proyecto" asp-action="Index">Proyectos</a></li>
+                        <li><a asp-area="" asp-controller="UserStory" asp-action="Index">User Stories</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Product Backlogs</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Sprint Backlogs</a></li>
+                    }
+                    else {
+                        <li></li>
                     }
                 </ul>
                 <partial name="_LoginPartial" />

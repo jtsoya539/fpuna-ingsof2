@@ -1,0 +1,69 @@
+@model PoliScrum.Models.UserStory
+
+@{
+    ViewData["Title"] = "Borrar";
+}
+
+<h2>Borrar</h2>
+
+<h3>¿Estás seguro que querés borrar este registro?</h3>
+<div>
+    <h4>User Story</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CriteriosAceptacion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CriteriosAceptacion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OrdenPrioridad)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OrdenPrioridad)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DuracionEstimada)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DuracionEstimada)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Valor)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Valor)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaInicio)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FechaInicio)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaFin)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FechaFin)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="UserStoryId" />
+        <input type="submit" value="Borrar" class="btn btn-default" /> |
+        <a asp-action="Index">Volver a la Lista</a>
+    </form>
+</div>
