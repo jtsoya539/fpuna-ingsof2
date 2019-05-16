@@ -20,6 +20,7 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -38,10 +39,9 @@
                     <!--<li><a asp-area="" asp-controller="Home" asp-action="Index">Inicio</a></li>-->
                     @if (SignInManager.IsSignedIn(User)) 
                     {
-                        <li><a asp-area="" asp-controller="Proyecto" asp-action="Index">Proyectos</a></li>
-                        <li><a asp-area="" asp-controller="UserStory" asp-action="Index">User Stories</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Product Backlogs</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Sprint Backlogs</a></li>
+                        <li><a asp-area="" asp-controller="Proyecto" asp-action="Index"><span class="fas fa-project-diagram"></span>&nbsp;Proyectos</a></li>
+                        <li><a asp-area="" asp-controller="Sprint" asp-action="Index"><span class="fas fa-retweet"></span>&nbsp;Sprints</a></li>
+                        <li><a asp-area="" asp-controller="UserStory" asp-action="Index"><span class="fas fa-tasks"></span>&nbsp;User Stories</a></li>
                     }
                     else {
                         <li></li>

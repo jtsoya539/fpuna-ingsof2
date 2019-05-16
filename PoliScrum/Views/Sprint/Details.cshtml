@@ -1,4 +1,4 @@
-@model PoliScrum.Models.Proyecto
+@model PoliScrum.Models.Sprint
 
 @{
     ViewData["Title"] = "Details";
@@ -7,15 +7,9 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Proyecto</h4>
+    <h4>Sprint</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.FechaInicio)
         </dt>
@@ -29,6 +23,12 @@
             @Html.DisplayFor(model => model.FechaFinEstimada)
         </dd>
         <dt>
+            @Html.DisplayNameFor(model => model.DuracionEstimada)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DuracionEstimada)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.FechaFin)
         </dt>
         <dd>
@@ -36,50 +36,7 @@
         </dd>
     </dl>
 
-    <h5>Sprints</h5>
-    <hr />
-    <div class="table-responsive">
-        <table class="table table-striped table-sm">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Fecha Inicio</th>
-                    <th>Fecha Fin Estimada</th>
-                    <th>Duración Estimada</th>
-                    <th>Fecha Fin</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.Sprints) {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.SprintId)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FechaInicio)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FechaFinEstimada)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DuracionEstimada)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FechaFin)
-                        </td>
-                        <td>
-                            <a asp-controller="Sprint" asp-action="Edit" asp-route-id="@item.SprintId"><span class="fas fa-edit"></span></a> |
-                            <a asp-controller="Sprint" asp-action="Details" asp-route-id="@item.SprintId"><span class="fas fa-file-alt"></span></a> |
-                            <a asp-controller="Sprint" asp-action="Delete" asp-route-id="@item.SprintId"><span class="fas fa-trash"></span></a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-
-    <h5>Product Backlog</h5>
+    <h5>Sprint Backlog</h5>
     <hr />
     <div class="table-responsive">
         <table class="table table-striped table-sm">
@@ -94,7 +51,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model.ProductBacklog) {
+                @foreach (var item in Model.SprintBacklog) {
                     <tr>
                         <td>
                             @Html.DisplayFor(modelItem => item.UserStoryId)
@@ -124,6 +81,6 @@
 
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ProyectoId">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model.SprintId">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

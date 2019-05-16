@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,7 @@ using PoliScrum.Models;
 
 namespace PoliScrum.Controllers
 {
+    [Authorize]
     public class ProyectoController : Controller
     {
         private readonly PoliScrumContext _context;
@@ -21,7 +23,7 @@ namespace PoliScrum.Controllers
         // GET: Proyecto
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Proyectos.Where(m => m.Estado != 0).ToListAsync());
+            return View(await _context.Proyectos.ToListAsync());
         }
 
         // GET: Proyecto/Details/5
@@ -39,6 +41,12 @@ namespace PoliScrum.Controllers
                 return NotFound();
             }
 
+            List<Sprint> sprints = await _context.Sprints.Where(s => s.Proyecto.ProyectoId == id).ToListAsync();
+            proyecto.Sprints = sprints;
+
+            List<UserStory> productBacklog = await _context.UserStories.Where(us => us.Proyecto.ProyectoId == id).ToListAsync();
+            proyecto.ProductBacklog = productBacklog;
+
             return View(proyecto);
         }
 
@@ -53,7 +61,7 @@ namespace PoliScrum.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProyectoId,Nombre,Estado,FechaInicio,FechaFin,FechaFinEstimada")] Proyecto proyecto)
+        public async Task<IActionResult> Create([Bind("ProyectoId,Nombre,FechaInicio,FechaFinEstimada,FechaFin")] Proyecto proyecto)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +93,7 @@ namespace PoliScrum.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProyectoId,Nombre,Estado,FechaInicio,FechaFin,FechaFinEstimada")] Proyecto proyecto)
+        public async Task<IActionResult> Edit(int id, [Bind("ProyectoId,Nombre,FechaInicio,FechaFinEstimada,FechaFin")] Proyecto proyecto)
         {
             if (id != proyecto.ProyectoId)
             {
@@ -139,8 +147,7 @@ namespace PoliScrum.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var proyecto = await _context.Proyectos.FindAsync(id);
-            proyecto.Estado = 0;
-            // _context.Proyectos.Remove(proyecto);
+            _context.Proyectos.Remove(proyecto);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

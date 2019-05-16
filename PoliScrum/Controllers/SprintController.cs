@@ -11,22 +11,22 @@ using PoliScrum.Models;
 namespace PoliScrum.Controllers
 {
     [Authorize]
-    public class UserStoryController : Controller
+    public class SprintController : Controller
     {
         private readonly PoliScrumContext _context;
 
-        public UserStoryController(PoliScrumContext context)
+        public SprintController(PoliScrumContext context)
         {
             _context = context;
         }
 
-        // GET: UserStory
+        // GET: Sprint
         public async Task<IActionResult> Index()
         {
-            return View(await _context.UserStories.ToListAsync());
+            return View(await _context.Sprints.ToListAsync());
         }
 
-        // GET: UserStory/Details/5
+        // GET: Sprint/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,39 +34,42 @@ namespace PoliScrum.Controllers
                 return NotFound();
             }
 
-            var userStory = await _context.UserStories
-                .FirstOrDefaultAsync(m => m.UserStoryId == id);
-            if (userStory == null)
+            var sprint = await _context.Sprints
+                .FirstOrDefaultAsync(m => m.SprintId == id);
+            if (sprint == null)
             {
                 return NotFound();
             }
 
-            return View(userStory);
+            List<UserStory> sprintBacklog = await _context.UserStories.Where(us => us.Sprint.SprintId == id).ToListAsync();
+            sprint.SprintBacklog = sprintBacklog;
+
+            return View(sprint);
         }
 
-        // GET: UserStory/Create
+        // GET: Sprint/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: UserStory/Create
+        // POST: Sprint/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserStoryId,Titulo,Descripcion,CriteriosAceptacion,OrdenPrioridad,Valor,FechaInicio,DuracionEstimada,FechaFin")] UserStory userStory)
+        public async Task<IActionResult> Create([Bind("SprintId,FechaInicio,FechaFinEstimada,DuracionEstimada,FechaFin")] Sprint sprint)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(userStory);
+                _context.Add(sprint);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(userStory);
+            return View(sprint);
         }
 
-        // GET: UserStory/Edit/5
+        // GET: Sprint/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -74,22 +77,22 @@ namespace PoliScrum.Controllers
                 return NotFound();
             }
 
-            var userStory = await _context.UserStories.FindAsync(id);
-            if (userStory == null)
+            var sprint = await _context.Sprints.FindAsync(id);
+            if (sprint == null)
             {
                 return NotFound();
             }
-            return View(userStory);
+            return View(sprint);
         }
 
-        // POST: UserStory/Edit/5
+        // POST: Sprint/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UserStoryId,Titulo,Descripcion,CriteriosAceptacion,OrdenPrioridad,Valor,FechaInicio,DuracionEstimada,FechaFin")] UserStory userStory)
+        public async Task<IActionResult> Edit(int id, [Bind("SprintId,FechaInicio,FechaFinEstimada,DuracionEstimada,FechaFin")] Sprint sprint)
         {
-            if (id != userStory.UserStoryId)
+            if (id != sprint.SprintId)
             {
                 return NotFound();
             }
@@ -98,12 +101,12 @@ namespace PoliScrum.Controllers
             {
                 try
                 {
-                    _context.Update(userStory);
+                    _context.Update(sprint);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UserStoryExists(userStory.UserStoryId))
+                    if (!SprintExists(sprint.SprintId))
                     {
                         return NotFound();
                     }
@@ -114,10 +117,10 @@ namespace PoliScrum.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(userStory);
+            return View(sprint);
         }
 
-        // GET: UserStory/Delete/5
+        // GET: Sprint/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -125,30 +128,30 @@ namespace PoliScrum.Controllers
                 return NotFound();
             }
 
-            var userStory = await _context.UserStories
-                .FirstOrDefaultAsync(m => m.UserStoryId == id);
-            if (userStory == null)
+            var sprint = await _context.Sprints
+                .FirstOrDefaultAsync(m => m.SprintId == id);
+            if (sprint == null)
             {
                 return NotFound();
             }
 
-            return View(userStory);
+            return View(sprint);
         }
 
-        // POST: UserStory/Delete/5
+        // POST: Sprint/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var userStory = await _context.UserStories.FindAsync(id);
-            _context.UserStories.Remove(userStory);
+            var sprint = await _context.Sprints.FindAsync(id);
+            _context.Sprints.Remove(sprint);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool UserStoryExists(int id)
+        private bool SprintExists(int id)
         {
-            return _context.UserStories.Any(e => e.UserStoryId == id);
+            return _context.Sprints.Any(e => e.SprintId == id);
         }
     }
 }

@@ -1,13 +1,13 @@
 @model IEnumerable<PoliScrum.Models.UserStory>
 
 @{
-    ViewData["Title"] = "User Stories";
+    ViewData["Title"] = "Index";
 }
 
-<h2>User Stories</h2>
+<h2>Index</h2>
 
 <p>
-    <a asp-action="Create">Crear Nuevo</a>
+    <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -25,13 +25,13 @@
                 @Html.DisplayNameFor(model => model.OrdenPrioridad)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DuracionEstimada)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Valor)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.FechaInicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DuracionEstimada)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.FechaFin)
@@ -55,21 +55,21 @@
                 @Html.DisplayFor(modelItem => item.OrdenPrioridad)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DuracionEstimada)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Valor)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FechaInicio)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.DuracionEstimada)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.FechaFin)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.UserStoryId">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.UserStoryId">Detalles</a> |
-                <a asp-action="Delete" asp-route-id="@item.UserStoryId">Borrar</a>
+                <a asp-action="Edit" asp-route-id="@item.UserStoryId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.UserStoryId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.UserStoryId">Delete</a>
             </td>
         </tr>
 }

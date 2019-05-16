@@ -1,4 +1,4 @@
-@model IEnumerable<PoliScrum.Models.Proyecto>
+@model IEnumerable<PoliScrum.Models.Sprint>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,13 +13,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.FechaInicio)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.FechaFinEstimada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DuracionEstimada)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.FechaFin)
@@ -31,21 +31,21 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.FechaInicio)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FechaFinEstimada)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.DuracionEstimada)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.FechaFin)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ProyectoId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ProyectoId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ProyectoId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.SprintId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.SprintId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.SprintId">Delete</a>
             </td>
         </tr>
 }

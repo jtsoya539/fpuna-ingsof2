@@ -11,22 +11,22 @@ using PoliScrum.Models;
 namespace PoliScrum.Controllers
 {
     [Authorize]
-    public class UserStoryController : Controller
+    public class ProyectoEstadoController : Controller
     {
         private readonly PoliScrumContext _context;
 
-        public UserStoryController(PoliScrumContext context)
+        public ProyectoEstadoController(PoliScrumContext context)
         {
             _context = context;
         }
 
-        // GET: UserStory
+        // GET: ProyectoEstado
         public async Task<IActionResult> Index()
         {
-            return View(await _context.UserStories.ToListAsync());
+            return View(await _context.ProyectoEstados.ToListAsync());
         }
 
-        // GET: UserStory/Details/5
+        // GET: ProyectoEstado/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,39 +34,39 @@ namespace PoliScrum.Controllers
                 return NotFound();
             }
 
-            var userStory = await _context.UserStories
-                .FirstOrDefaultAsync(m => m.UserStoryId == id);
-            if (userStory == null)
+            var proyectoEstado = await _context.ProyectoEstados
+                .FirstOrDefaultAsync(m => m.ProyectoEstadoId == id);
+            if (proyectoEstado == null)
             {
                 return NotFound();
             }
 
-            return View(userStory);
+            return View(proyectoEstado);
         }
 
-        // GET: UserStory/Create
+        // GET: ProyectoEstado/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: UserStory/Create
+        // POST: ProyectoEstado/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserStoryId,Titulo,Descripcion,CriteriosAceptacion,OrdenPrioridad,Valor,FechaInicio,DuracionEstimada,FechaFin")] UserStory userStory)
+        public async Task<IActionResult> Create([Bind("ProyectoEstadoId,Descripcion")] ProyectoEstado proyectoEstado)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(userStory);
+                _context.Add(proyectoEstado);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(userStory);
+            return View(proyectoEstado);
         }
 
-        // GET: UserStory/Edit/5
+        // GET: ProyectoEstado/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -74,22 +74,22 @@ namespace PoliScrum.Controllers
                 return NotFound();
             }
 
-            var userStory = await _context.UserStories.FindAsync(id);
-            if (userStory == null)
+            var proyectoEstado = await _context.ProyectoEstados.FindAsync(id);
+            if (proyectoEstado == null)
             {
                 return NotFound();
             }
-            return View(userStory);
+            return View(proyectoEstado);
         }
 
-        // POST: UserStory/Edit/5
+        // POST: ProyectoEstado/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UserStoryId,Titulo,Descripcion,CriteriosAceptacion,OrdenPrioridad,Valor,FechaInicio,DuracionEstimada,FechaFin")] UserStory userStory)
+        public async Task<IActionResult> Edit(int id, [Bind("ProyectoEstadoId,Descripcion")] ProyectoEstado proyectoEstado)
         {
-            if (id != userStory.UserStoryId)
+            if (id != proyectoEstado.ProyectoEstadoId)
             {
                 return NotFound();
             }
@@ -98,12 +98,12 @@ namespace PoliScrum.Controllers
             {
                 try
                 {
-                    _context.Update(userStory);
+                    _context.Update(proyectoEstado);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UserStoryExists(userStory.UserStoryId))
+                    if (!ProyectoEstadoExists(proyectoEstado.ProyectoEstadoId))
                     {
                         return NotFound();
                     }
@@ -114,10 +114,10 @@ namespace PoliScrum.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(userStory);
+            return View(proyectoEstado);
         }
 
-        // GET: UserStory/Delete/5
+        // GET: ProyectoEstado/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -125,30 +125,30 @@ namespace PoliScrum.Controllers
                 return NotFound();
             }
 
-            var userStory = await _context.UserStories
-                .FirstOrDefaultAsync(m => m.UserStoryId == id);
-            if (userStory == null)
+            var proyectoEstado = await _context.ProyectoEstados
+                .FirstOrDefaultAsync(m => m.ProyectoEstadoId == id);
+            if (proyectoEstado == null)
             {
                 return NotFound();
             }
 
-            return View(userStory);
+            return View(proyectoEstado);
         }
 
-        // POST: UserStory/Delete/5
+        // POST: ProyectoEstado/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var userStory = await _context.UserStories.FindAsync(id);
-            _context.UserStories.Remove(userStory);
+            var proyectoEstado = await _context.ProyectoEstados.FindAsync(id);
+            _context.ProyectoEstados.Remove(proyectoEstado);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool UserStoryExists(int id)
+        private bool ProyectoEstadoExists(int id)
         {
-            return _context.UserStories.Any(e => e.UserStoryId == id);
+            return _context.ProyectoEstados.Any(e => e.ProyectoEstadoId == id);
         }
     }
 }

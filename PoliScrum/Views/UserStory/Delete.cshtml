@@ -1,14 +1,14 @@
 @model PoliScrum.Models.UserStory
 
 @{
-    ViewData["Title"] = "Borrar";
+    ViewData["Title"] = "Delete";
 }
 
-<h2>Borrar</h2>
+<h2>Delete</h2>
 
-<h3>¿Estás seguro que querés borrar este registro?</h3>
+<h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>User Story</h4>
+    <h4>UserStory</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -36,12 +36,6 @@
             @Html.DisplayFor(model => model.OrdenPrioridad)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.DuracionEstimada)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DuracionEstimada)
-        </dd>
-        <dt>
             @Html.DisplayNameFor(model => model.Valor)
         </dt>
         <dd>
@@ -54,6 +48,12 @@
             @Html.DisplayFor(model => model.FechaInicio)
         </dd>
         <dt>
+            @Html.DisplayNameFor(model => model.DuracionEstimada)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DuracionEstimada)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.FechaFin)
         </dt>
         <dd>
@@ -63,7 +63,7 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="UserStoryId" />
-        <input type="submit" value="Borrar" class="btn btn-default" /> |
-        <a asp-action="Index">Volver a la Lista</a>
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
     </form>
 </div>

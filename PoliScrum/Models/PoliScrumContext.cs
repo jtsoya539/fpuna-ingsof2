@@ -9,8 +9,9 @@ namespace PoliScrum.Models
         {
         }
 
-        public DbSet<Proyecto> Proyectos { get; set; }
         public DbSet<UserStory> UserStories { get; set; }
-        // public DbSet<ProyectoEstado> ProyectoEstados { get; set; }
+        public DbSet<ProyectoEstado> ProyectoEstados { get; set; }
+        public DbSet<Proyecto> Proyectos { get; set; }
+        public DbSet<Sprint> Sprints { get; set; }
     }
 }

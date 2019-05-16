@@ -28,9 +28,6 @@ namespace PoliScrum.Models
         [Display(Name = "Orden de Prioridad", ShortName = "Prioridad")]
         public int OrdenPrioridad { get; set; }
 
-        [Display(Name = "Duración Estimada", ShortName = "Duración Estimada")]
-        public int DuracionEstimada { get; set; }
-
         [Display(Name = "Valor", ShortName = "Valor")]
         public int Valor { get; set; }
 
@@ -38,8 +35,17 @@ namespace PoliScrum.Models
         [Display(Name = "Fecha de Inicio", ShortName = "Fecha Inicio")]
         public DateTime FechaInicio { get; set; }
 
+        [Display(Name = "Duración Estimada", ShortName = "Duración Estimada")]
+        public int DuracionEstimada { get; set; }
+
         [DataType(DataType.Date)]
         [Display(Name = "Fecha de Fin", ShortName = "Fecha Fin")]
         public DateTime FechaFin { get; set; }
+
+        [Display(Name = "Proyecto", ShortName = "Proyecto")]
+        public Proyecto Proyecto { get; set; }
+
+        [Display(Name = "Sprint", ShortName = "Sprint")]
+        public Sprint Sprint { get; set; }
     }
 }

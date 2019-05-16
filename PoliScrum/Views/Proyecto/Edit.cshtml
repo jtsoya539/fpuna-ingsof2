@@ -1,10 +1,10 @@
 @model PoliScrum.Models.Proyecto
 
 @{
-    ViewData["Title"] = "Editar";
+    ViewData["Title"] = "Edit";
 }
 
-<h2>Editar</h2>
+<h2>Edit</h2>
 
 <h4>Proyecto</h4>
 <hr />
@@ -19,19 +19,9 @@
                 <span asp-validation-for="Nombre" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Estado" class="control-label"></label>
-                <input asp-for="Estado" class="form-control" />
-                <span asp-validation-for="Estado" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="FechaInicio" class="control-label"></label>
                 <input asp-for="FechaInicio" class="form-control" />
                 <span asp-validation-for="FechaInicio" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FechaFin" class="control-label"></label>
-                <input asp-for="FechaFin" class="form-control" />
-                <span asp-validation-for="FechaFin" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="FechaFinEstimada" class="control-label"></label>
@@ -39,14 +29,19 @@
                 <span asp-validation-for="FechaFinEstimada" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Guardar" class="btn btn-default" />
+                <label asp-for="FechaFin" class="control-label"></label>
+                <input asp-for="FechaFin" class="form-control" />
+                <span asp-validation-for="FechaFin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Volver a la Lista</a>
+    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
