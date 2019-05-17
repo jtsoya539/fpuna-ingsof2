@@ -35,15 +35,13 @@ namespace PoliScrum.Controllers
             }
 
             var sprint = await _context.Sprints
+                .Include(m => m.SprintBacklog)
                 .FirstOrDefaultAsync(m => m.SprintId == id);
             if (sprint == null)
             {
                 return NotFound();
             }
-
-            List<UserStory> sprintBacklog = await _context.UserStories.Where(us => us.Sprint.SprintId == id).ToListAsync();
-            sprint.SprintBacklog = sprintBacklog;
-
+            
             return View(sprint);
         }
 

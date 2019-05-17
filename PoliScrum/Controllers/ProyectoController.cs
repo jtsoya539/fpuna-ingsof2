@@ -23,7 +23,7 @@ namespace PoliScrum.Controllers
         // GET: Proyecto
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Proyectos.ToListAsync());
+            return View(await _context.Proyectos.Include(m => m.ProyectoEstado).ToListAsync());
         }
 
         // GET: Proyecto/Details/5
@@ -35,18 +35,15 @@ namespace PoliScrum.Controllers
             }
 
             var proyecto = await _context.Proyectos
+                .Include(m => m.ProyectoEstado)
+                .Include(m => m.Sprints)
+                .Include(m => m.ProductBacklog)
                 .FirstOrDefaultAsync(m => m.ProyectoId == id);
             if (proyecto == null)
             {
                 return NotFound();
             }
-
-            List<Sprint> sprints = await _context.Sprints.Where(s => s.Proyecto.ProyectoId == id).ToListAsync();
-            proyecto.Sprints = sprints;
-
-            List<UserStory> productBacklog = await _context.UserStories.Where(us => us.Proyecto.ProyectoId == id).ToListAsync();
-            proyecto.ProductBacklog = productBacklog;
-
+            
             return View(proyecto);
         }
 
