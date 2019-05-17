@@ -21,7 +21,7 @@ namespace PoliScrum.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                id = _context.Proyectos.FirstOrDefaultAsync().Id;
             }
 
             var proyecto = await _context.Proyectos
