@@ -19,19 +19,22 @@ namespace PoliScrum.Controllers
         // GET: Dashboard/ProductBacklog/5
         public async Task<IActionResult> ProductBacklog(int? id)
         {
+            Proyecto proyecto;
             if (id == null)
             {
-                id = _context.Proyectos.FirstOrDefaultAsync().Id;
+                proyecto = await _context.Proyectos
+                .Include(m => m.ProyectoEstado)
+                .Include(m => m.Sprints)
+                .Include(m => m.ProductBacklog)
+                .FirstOrDefaultAsync(m => m.ProyectoId > 0);
             }
-
-            var proyecto = await _context.Proyectos
+            else
+            {
+                proyecto = await _context.Proyectos
                 .Include(m => m.ProyectoEstado)
                 .Include(m => m.Sprints)
                 .Include(m => m.ProductBacklog)
                 .FirstOrDefaultAsync(m => m.ProyectoId == id);
-            if (proyecto == null)
-            {
-                return NotFound();
             }
 
             return View(proyecto);
@@ -40,17 +43,18 @@ namespace PoliScrum.Controllers
         // GET: Dashboard/SprintBacklog/5
         public async Task<IActionResult> SprintBacklog(int? id)
         {
+            Sprint sprint;
             if (id == null)
             {
-                return NotFound();
-            }
-
-            var sprint = await _context.Sprints
+                sprint = await _context.Sprints
                 .Include(m => m.SprintBacklog)
-                .FirstOrDefaultAsync(m => m.SprintId == id);
-            if (sprint == null)
+                .FirstOrDefaultAsync(m => m.SprintId > 0);
+            }
+            else
             {
-                return NotFound();
+                sprint = await _context.Sprints
+               .Include(m => m.SprintBacklog)
+               .FirstOrDefaultAsync(m => m.SprintId == id);
             }
 
             return View(sprint);
