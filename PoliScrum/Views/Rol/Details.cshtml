@@ -1,0 +1,67 @@
+@model PoliScrum.Models.Rol
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Rol</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+    </dl>
+
+    <h5>Usuarios</h5>
+    <hr />
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Cédula</th>
+                    <th>Correo Electrónico</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Usuarios) {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UsuarioId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Apellido)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Cedula)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CorreoElectronico)
+                        </td>
+                        <td>
+                            <a asp-controller="Usuario" asp-action="Edit" asp-route-id="@item.UsuarioId"><span class="fas fa-edit"></span></a> |
+                            <a asp-controller="Usuario" asp-action="Details" asp-route-id="@item.UsuarioId"><span class="fas fa-file-alt"></span></a> |
+                            <a asp-controller="Usuario" asp-action="Delete" asp-route-id="@item.UsuarioId"><span class="fas fa-trash"></span></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.RolId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

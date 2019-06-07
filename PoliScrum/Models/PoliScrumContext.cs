@@ -13,5 +13,7 @@ namespace PoliScrum.Models
         public DbSet<ProyectoEstado> ProyectoEstados { get; set; }
         public DbSet<Proyecto> Proyectos { get; set; }
         public DbSet<Sprint> Sprints { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Rol> Roles { get; set; }
     }
 }
