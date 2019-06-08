@@ -34,7 +34,8 @@
                 </button>
                 @if (SignInManager.IsSignedIn(User)) 
                 {
-                    <a asp-area="" asp-controller="Dashboard" asp-action="ProductBacklog" class="navbar-brand">Dashboard</a>
+                    <a asp-area="" asp-controller="Dashboard" asp-action="ProductBacklog" class="navbar-brand"><span class="fas fa-chart-line"></span>&nbsp;Product Backlog</a>
+                    <a asp-area="" asp-controller="Dashboard" asp-action="SprintBacklog" class="navbar-brand"><span class="fas fa-chart-line"></span>&nbsp;Sprint Backlog</a>
                 }
                 else {
                     <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">PoliScrum</a>
@@ -48,6 +49,8 @@
                         <li><a asp-area="" asp-controller="Proyecto" asp-action="Index"><span class="fas fa-project-diagram"></span>&nbsp;Proyectos</a></li>
                         <li><a asp-area="" asp-controller="Sprint" asp-action="Index"><span class="fas fa-retweet"></span>&nbsp;Sprints</a></li>
                         <li><a asp-area="" asp-controller="UserStory" asp-action="Index"><span class="fas fa-tasks"></span>&nbsp;User Stories</a></li>
+                        <li><a asp-area="" asp-controller="Rol" asp-action="Index"><span class="fas fa-users-cog"></span>&nbsp;Roles</a></li>
+                        <li><a asp-area="" asp-controller="Usuario" asp-action="Index"><span class="fas fa-users"></span>&nbsp;Usuarios</a></li>
                     }
                     else {
                         <li></li>

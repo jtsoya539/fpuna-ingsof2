@@ -9,6 +9,7 @@
 <div>
     <h4>Sprint</h4>
     <hr />
+    <a asp-controller="Dashboard" asp-action="SprintBacklog" asp-route-id="@Model.SprintId"><button type="button" class="btn btn-sm">Dashboard</button></a>
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.FechaInicio)
