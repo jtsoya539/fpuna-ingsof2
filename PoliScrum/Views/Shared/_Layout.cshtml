@@ -34,7 +34,8 @@
                 </button>
                 @if (SignInManager.IsSignedIn(User)) 
                 {
-                    <a asp-area="" asp-controller="Dashboard" asp-action="ProductBacklog" class="navbar-brand">Dashboard</a>
+                    <a asp-area="" asp-controller="Dashboard" asp-action="ProductBacklog" class="navbar-brand"><span class="fas fa-chart-line"></span>&nbsp;Product Backlog</a>
+                    <a asp-area="" asp-controller="Dashboard" asp-action="SprintBacklog" class="navbar-brand"><span class="fas fa-chart-line"></span>&nbsp;Sprint Backlog</a>
                 }
                 else {
                     <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">PoliScrum</a>

@@ -7,8 +7,9 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Proyecto</h4>
+    <h4>Proyecto</h4>    
     <hr />
+    <a asp-controller="Dashboard" asp-action="ProductBacklog" asp-route-id="@Model.ProyectoId"><button type="button" class="btn btn-sm">Dashboard</button></a>
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Nombre)

@@ -45,7 +45,8 @@
             <td>
                 <a asp-action="Edit" asp-route-id="@item.SprintId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.SprintId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.SprintId">Delete</a>
+                <a asp-action="Delete" asp-route-id="@item.SprintId">Delete</a> |
+                <a asp-controller="Dashboard" asp-action="SprintBacklog" asp-route-id="@item.SprintId"><span class="fas fa-chart-line"></span></a>
             </td>
         </tr>
 }

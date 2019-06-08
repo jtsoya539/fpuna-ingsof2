@@ -26,7 +26,7 @@ namespace PoliScrum.Controllers
                 .Include(m => m.ProyectoEstado)
                 .Include(m => m.Sprints)
                 .Include(m => m.ProductBacklog)
-                .FirstOrDefaultAsync(m => m.ProyectoId > 0);
+                .LastOrDefaultAsync(m => m.ProyectoId > 0);
             }
             else
             {
@@ -48,7 +48,7 @@ namespace PoliScrum.Controllers
             {
                 sprint = await _context.Sprints
                 .Include(m => m.SprintBacklog)
-                .FirstOrDefaultAsync(m => m.SprintId > 0);
+                .LastOrDefaultAsync(m => m.SprintId > 0);
             }
             else
             {

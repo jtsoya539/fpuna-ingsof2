@@ -51,7 +51,8 @@
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ProyectoId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.ProyectoId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ProyectoId">Delete</a>
+                <a asp-action="Delete" asp-route-id="@item.ProyectoId">Delete</a> |
+                <a asp-controller="Dashboard" asp-action="ProductBacklog" asp-route-id="@item.ProyectoId"><span class="fas fa-chart-line"></span></a>
             </td>
         </tr>
 }

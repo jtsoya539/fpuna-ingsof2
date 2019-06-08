@@ -23,7 +23,7 @@ namespace PoliScrum.Controllers
         // GET: Usuario
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Usuarios.ToListAsync());
+            return View(await _context.Usuarios.Include(m => m.Rol).ToListAsync());
         }
 
         // GET: Usuario/Details/5
@@ -35,6 +35,7 @@ namespace PoliScrum.Controllers
             }
 
             var usuario = await _context.Usuarios
+                .Include(m => m.Rol)
                 .FirstOrDefaultAsync(m => m.UsuarioId == id);
             if (usuario == null)
             {
